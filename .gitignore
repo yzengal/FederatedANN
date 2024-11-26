@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+# VS Code
+.vscode
+.VSCodeCounter
+.history
+.idea
+
+# log files
+log

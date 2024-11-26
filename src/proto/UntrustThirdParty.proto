@@ -1,0 +1,53 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+package UntrustThirdParty;
+
+service ThirdPartyService {
+    rpc RequestRandomValue(RequestRandom) returns (RandomValue) {}
+
+    rpc RequestSecretShareBob(PerturbResult) returns (SecretShare) {}
+
+    rpc RequestSecretShareAlice(RequestSecretShare) returns (SecretShare) {}
+
+    rpc RequestSecretShareListAlice(RequestSecretShareList) returns (SecretShareList) {}
+};
+
+message PerturbResult {
+    int32 alice = 1;
+    int32 bob = 2;
+    float value = 3;
+};
+
+message RequestRandom {
+    int32 alice = 1;
+    int32 m = 2;
+};
+
+message RandomValue {
+    repeated float r = 1;
+};
+
+message RequestSecretShare {
+    int32 alice = 1;
+    int32 bob = 2;
+};
+
+message SecretShare {
+    int32 r_zero = 1;
+    int32 r_one = 2;
+};
+
+message RequestSecretShareList {
+    int32 alice = 1;
+    int32 m = 2;
+};
+
+message SecretShareList {
+    repeated int32 r_zero = 1;
+    repeated int32 r_one = 2;
+};
+
+
+
+

@@ -1,0 +1,33 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+package SgxUser;
+
+service SgxUserService {
+    rpc ReceiveKnnQuery(KnnQuery) returns (google.protobuf.Empty) {}
+
+    rpc ReceiveKnnAnswer(VectorDataVid) returns (google.protobuf.Empty) {}
+
+    rpc ReceiveSiloAllocation(SiloAllocation) returns (google.protobuf.Empty) {}
+
+    rpc DumpKnnAnswer(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+};
+
+message KnnQuery {
+    int64 vid = 1;
+    int64 k = 2;
+    repeated float data = 3;
+};
+
+message VectorDataVid {
+    double comm = 1;
+    repeated int64 vid = 2;
+};
+
+message SiloAllocation {
+    double comm = 1;
+    repeated int32 cnt = 2;
+};
+
+
+

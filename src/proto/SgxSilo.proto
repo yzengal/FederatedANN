@@ -1,0 +1,51 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+package SgxSilo;
+
+service SgxSiloService {
+    rpc ExecuteKnnQuery(KnnSql) returns (google.protobuf.Empty) {}
+
+    rpc GetEncryptCandidate(CandSql) returns (EncryptData) {}
+
+    rpc GetPartialAnswer(CandSql) returns (VectorData) {}
+
+    rpc ClearKnnCandidate(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+
+    // 获取Diffie-Hellman密钥交换的参数 
+    rpc GetParams(google.protobuf.Empty) returns (DiffieHellmanParams);  
+
+    // 获取Diffie-Hellman密钥交换的随机数r^g%p的结果
+    rpc GetRandom(DiffieHellmanRg) returns (DiffieHellmanRg);
+};
+
+message KnnSql {
+    int64 vid = 1;
+    int64 k = 2;
+    repeated float data = 3;
+};
+
+message CandSql {
+    int64 k = 1;
+};
+
+message EncryptData {
+    bytes data = 1;
+};
+
+message VectorData {
+    repeated int64 vid = 1;
+    repeated float data = 2;
+};
+
+message DiffieHellmanParams {  
+    uint64 p = 1;  // 大质数  
+    uint64 g = 2;  // 生成元  
+};
+
+message DiffieHellmanRg {
+    uint64 rg_mod_p = 1;  // 随机数的g次方取模结果  
+};
+
+
+
