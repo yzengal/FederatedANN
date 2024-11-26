@@ -1,5 +1,5 @@
-# FederatedVectorQuery
-This repository aims to develop a prototype system for secure, accurate, and efficient  query processing over federated vector databases.
+# Federated ANN: ANN Search Over Federated Vector Databases
+This repository develops an accurate, efficient and secure solution to approximate nearest neighbor search over federated vector databases. 
 
 ## Environment
 
@@ -131,7 +131,7 @@ target_link_libraries(<your target> faiss)
 ```
 If **faiss** was installed globally, the above ``find_package`` command will likely find the library automatically. 
 
-### IV. Install SEAL
+### IV. Install SEAL (Optional)
 
 Microsoft SEAL is an easy-to-use open-source (MIT licensed) homomorphic encryption library developed by the Cryptography and Privacy Research Group at Microsoft. Microsoft SEAL is written in modern standard C++ and is easy to compile and run in many different environments.
 
@@ -237,6 +237,6 @@ cd "$ORIGINAL_DIR"
 Here, we only need to revise the ``query_path`` (for query file name), ``ip_path`` (for all silo's IP addresses), ``output_path`` (for log files), ``truth_path`` (for ground truth file name), and ``option`` (for algorithm setting).
 In our solution, ``option = equality`` indicates the **equality greedy algorithm (EGA)**,
 ``option = public`` indicates the **plaintext** baseline,
-and ``option = greedXy`` indicates the **optimized greedy algorithm (OGA)**.
+and ``option = greedX`` indicates the **optimized greedy algorithm (OGA)**.
 
 Similarly, for the **Patching OGA algorithm (PGA)**, you can run the scripts and executable programs that are related to ``Opt_Server`` and ``Opt_Silo``.
